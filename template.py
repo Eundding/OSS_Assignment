@@ -3,7 +3,6 @@
 
 import sys
 import pandas as pd
-import numpy as np
 from sklearn.model_selection import train_test_split
 import sklearn
 from sklearn.pipeline import make_pipeline
@@ -32,12 +31,12 @@ def dataset_stat(dataset_df):
 def split_dataset(dataset_df, testset_size): 
 	data = dataset_df.drop(['target'], axis=1)
 	target = dataset_df['target']
-	x_train,  x_test, y_train, y_test = train_test_split(data, target, test_size=testset_size, random_state=11)
+	x_train,  x_test, y_train, y_test = train_test_split(data, target, test_size=testset_size)
 	return x_train,  x_test, y_train, y_test
 
 
 def decision_tree_train_test(x_train, x_test, y_train, y_test): 
-	model = DecisionTreeClassifier(random_state=2022)
+	model = DecisionTreeClassifier()
 	model.fit(x_train, y_train)
 	y_pred = model.predict(x_test) # 예측값
 	acc = accuracy_score(y_test, y_pred)
